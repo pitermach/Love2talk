@@ -1,5 +1,5 @@
 
-objc=require "objc"
+objc=require "objc/objc"
 local synth=objc.NSSpeechSynthesizer:alloc():init()
 local function output(text)
     if type(text) ~="string" then
