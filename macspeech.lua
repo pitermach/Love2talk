@@ -5,7 +5,11 @@ local function output(text)
     if type(text) ~="string" then
         text=tostring(text)
     end
-    synth:startSpeakingString(text) 
+    synth:startSpeakingString(text)
 end
-return {output=output}
+local function isSpeaking()
+    return synth:isSpeaking()
+end
+
+return {output=output, isSpeaking=isSpeaking}
 

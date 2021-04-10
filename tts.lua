@@ -7,11 +7,16 @@ elseif os=="OS X" then
     backend=require "macspeech"
 end
 
-local function say(text)
-    backend.output(text)
+local function say(text, interrupt)
+    interrupt=interrupt or false
+    backend.output(text, interrupt)
 end
 
-return {say=say}
+local function isSpeaking()
+    return backend.isSpeaking()
+end
+
+return {say=say, isSpeaking=isSpeaking}
 
 
 

@@ -2,5 +2,7 @@ function love.load()
 tts=require "tts"
 end
 function love.keypressed()
-    tts.say("meow")
+    print("synthesizer about to speak, currently " ..tostring(tts.isSpeaking()) ..".")
+    tts.say("Hello world!")
+    if tts.isSpeaking()==true then print("It's talking!") end 
 end

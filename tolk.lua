@@ -46,9 +46,7 @@ local function isSpeaking()
 end
 
 local function detectScreenReader()
-    local str=tolk.Tolk_DetectScreenReader()
-    ffi.string(str)
-    return str
+    --todo, need to convert the returned value to something Lua likes
 end
 
 local function hasSpeech()
