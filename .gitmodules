@@ -1,0 +1,3 @@
+[submodule "objc"]
+	path = objc
+	url = git@github.com:luapower/objc.git
