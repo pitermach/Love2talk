@@ -8,7 +8,11 @@ local function output(text)
     synth:startSpeakingString(text)
 end
 local function isSpeaking()
-    return synth:isSpeaking()
+    if synth:isSpeaking()==1 then
+        return true
+    else
+        return false
+    end
 end
 
 return {output=output, isSpeaking=isSpeaking}
