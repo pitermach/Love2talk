@@ -1,5 +1,5 @@
 function love.load()
-tts=require "tts"
+tts=require "Love2talk"
 end
 function love.keypressed()
     print("synthesizer about to speak, currently " ..tostring(tts.isSpeaking()) ..".")
