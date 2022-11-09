@@ -1,19 +1,21 @@
+local objc = require("objc.objc")
 
-objc=require "objc/objc"
-local synth=objc.NSSpeechSynthesizer:alloc():init()
-local function output(text)
-    if type(text) ~="string" then
-        text=tostring(text)
-    end
-    synth:startSpeakingString(text)
+objc.load("AVFoundation")
+local backend = {}
+backend.synth = objc.AVSpeechSynthesizer:alloc():init()
+
+function backend.output(text, interrupt)
+	text = tostring(text)
+	interrupt = interrupt or false
+	if interrupt then
+		backend.synth:stopSpeakingAtBoundary(0)
+	end
+	local utterance = objc.AVSpeechUtterance:alloc():initWithString(text)
+	backend.synth:speakUtterance(utterance)
 end
-local function isSpeaking()
-    if synth:isSpeaking()==1 then
-        return true
-    else
-        return false
-    end
+
+function backend.isSpeaking()
+	return backend.synth:isSpeaking()
 end
 
-return {output=output, isSpeaking=isSpeaking}
-
+return backend
